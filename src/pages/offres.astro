@@ -4,6 +4,30 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 
-		<Layout titre="Offres">
-			<h1>Offres</h1>
-		</Layout>
+<Layout titre="Nos Offres">
+    <div class="py-12">
+        <h1 class="text-6xl font-extrabold text-violet-800 mb-10">Offres</h1>
+
+        <div class="space-y-6">
+            
+            <div class="bg-white p-8 rounded-xl shadow border-l-8 border-violet-600">
+                <h2 class="text-3xl font-bold">Pack Débutant</h2>
+                <p class="text-xl text-gray-600 mt-2">Parfait pour tester nos services.</p>
+                <p class="text-3xl font-black mt-4 text-violet-700">10€</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow border-l-8 border-violet-600">
+                <h2 class="text-3xl font-bold">Pack Avancé</h2>
+                <p class="text-xl text-gray-600 mt-2">Pour aller plus loin avec nous.</p>
+                <p class="text-3xl font-black mt-4 text-violet-700">25€</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow border-l-8 border-violet-600">
+                <h2 class="text-3xl font-bold">Pack Pro</h2>
+                <p class="text-xl text-gray-600 mt-2">L'expérience complète sans limites.</p>
+                <p class="text-3xl font-black mt-4 text-violet-700">50€</p>
+            </div>
+
+        </div>
+    </div>
+</Layout>

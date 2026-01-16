@@ -4,6 +4,20 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 
-		<Layout titre="Accueil">
-			<h1>Accueil</h1>
-		</Layout>
+<Layout titre="Accueil">
+    <div class="py-12">
+        <h1 class="text-6xl font-extrabold text-violet-800 mb-6">
+            Accueil
+        </h1>
+        <p class="text-2xl text-gray-600 leading-relaxed max-w-2xl">
+            Bienvenue sur la page d'accueil.
+			Ce site est construit avec Astro.
+        </p>
+        
+        <div class="mt-10">
+            <a href="/offres" class="bg-violet-600 text-white px-8 py-4 rounded-xl text-xl font-bold hover:bg-violet-700 transition shadow-lg inline-block">
+                Voir les offres
+            </a>
+        </div>
+    </div>
+</Layout>
