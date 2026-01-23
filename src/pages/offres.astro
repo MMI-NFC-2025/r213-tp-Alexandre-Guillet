@@ -1,53 +1,103 @@
 ---
-import '../styles/global.css'
+import '../styles/global.css';
 import Layout from '../layouts/Layout.astro';
+import Cards from '../components/Cards.astro';
 const offres = [
     {
-        "adresse": "2821 Lake Sevilla, Palm Harbor, TX",
-        "favori": true,
-        "id": "64l3n8nar836i5j",
-        "nbChambres": 4,
-        "nbSdb": 2,
-        "nomMaison": "Beverly Springfield",
-        "prix": 2700,
-        "surface": 45,
-        "imgUrl": "image1.png"
-    },
-    {
-        "adresse": "2699 Green Valley, Highland Lake",
-        "favori": true,
-        "id": "lo831zeg10hpm9y",
-        "nbChambres": 4,
-        "nbSdb": 2,
-        "nomMaison": "Palm Harbor",
-        "prix": 2095,
-        "surface": 42,
-        "imgUrl": "image2.png"
-    },
-    {
-        "adresse": "909 Woodland St, Michigan, IN",
+        "adresse": "55 rue des lilas 33000 Bordeaux",
         "favori": false,
-        "id": "s1zuhj19x8eb242",
-        "nbChambres": 4,
+        "id": "3apf9i2uyoyinug",
+        "nbChambres": 8,
+        "nbSdb": 10,
+        "nomMaison": "maison du sud",
+        "prix": 10000000,
+        "surface": 150,
+        "imgUrl": ""
+    },
+    {
+        "adresse": "31 rue de la vielle lutte 70000 Vesoul",
+        "favori": true,
+        "id": "9btgdg78b59u6jn",
+        "nbChambres": 3,
         "nbSdb": 3,
-        "nomMaison": "Faulkner Ave",
-        "prix": 4550,
-        "surface": 80,
-        "imgUrl": "image3.png"
+        "nomMaison": "maison centre",
+        "prix": 200000,
+        "surface": 100,
+        "imgUrl": ""
+    },
+    {
+        "adresse": "17 Rue de la mouette 44000 Nantes",
+        "favori": false,
+        "id": "rlt7o9vdv6n78h4",
+        "nbChambres": 2,
+        "nbSdb": 1,
+        "nomMaison": "maison Laura",
+        "prix": 12000,
+        "surface": 60,
+        "imgUrl": ""
+    },
+    {
+        "adresse": "4 place Tharradin BP 71427 25211 Montbéliard cedex",
+        "favori": true,
+        "id": "88y2w31mbown872",
+        "nbChambres": 7,
+        "nbSdb": 10,
+        "nomMaison": "maison mmi",
+        "prix": 500000,
+        "surface": 500000,
+        "imgUrl": ""
+    },
+    {
+        "adresse": "23 rue des petits pois 77000 Melun ",
+        "favori": false,
+        "id": "47lp6llen0kk9pt",
+        "nbChambres": 7,
+        "nbSdb": 9,
+        "nomMaison": "maison blanche",
+        "prix": 800000,
+        "surface": 350,
+        "imgUrl": ""
     }
 ]
 ---
+<Layout titre="Les offres">
+  <h1>Nos offres</h1>
+
+  <div>
+    {
+      offres.map((offre) => (
+         <div class="offre" data-favori={offre.favori}>
+            <!-- Contenu de l'offre -->
+            <Cards offre={offre} />
+        </div>
+
+      ))
+    }
+
+<button id="favori-button" class="bg-slate-600 rounded-lg text-white p-2">Afficher les favoris</button>
 
 
-<Layout titre="Nos Offres">
-    <h1 class="text-6xl font-extrabold text-violet-800 mb-6">
-        Offres
-    </h1>
-<div>
-{ offres.map((offre) => (
-        <ul>{offre.nomMaison}</ul>
-    ))
-}
+<script>
+    //@ts-nocheck
+    const button = document.getElementById('favori-button');
+    let showOnlyFavorites = false;
+
+    button?.addEventListener('click', () => {
+        showOnlyFavorites = !showOnlyFavorites;
+        const offres = document.querySelectorAll('.offre');
+
+        offres.forEach(offre => {
+            const isFavori = offre.dataset.favori === 'true';
+            console.log(isFavori);
+            if (showOnlyFavorites) {
+                offre.style.display = isFavori ? 'block' : 'none';
+                button.textContent = 'Afficher tout';
+            } else {
+                offre.style.display = 'block';
+                button.textContent = 'Afficher les favoris';
+            }
+        });
+    });
+</script>
 </div>
-
 </Layout>
