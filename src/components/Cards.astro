@@ -1,18 +1,14 @@
 ---
 const { offre } = Astro.props;
+import PbImage from './PbImage.astro';
 ---
 
 <div class="card bg-violet-400 text-white py-12 px-8 text-center mt-auto">
-    <img src={offre.imgUrl} alt={offre.nomMaison} />
+    <PbImage record={offre} recordImage={offre.image[0]} />
 
-    <h2>{offre.nomMaison}</h2>
-    <p>{offre.adresse}</p>
-
+    <h2>{offre.nom_maison}</h2>
     <ul>
-        <li>Chambres : {offre.nbChambres}</li>
-        <li>Salles de bain : {offre.nbSdb}</li>
-        <li>Surface : {offre.surface} m²</li>
-        <li>Prix : {offre.prix} €</li>
+        <li>Nom : {offre.nom_maison}</li>
     </ul>
 
     {offre.favori && <span class="favori bg-blend-color-burn text-yellow-400">★ Favori</span>}
