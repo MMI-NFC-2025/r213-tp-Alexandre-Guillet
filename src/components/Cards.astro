@@ -4,7 +4,7 @@ import PbImage from './PbImage.astro';
 ---
 
 <div class="card bg-violet-400 text-white py-12 px-8 text-center mt-auto">
-    <PbImage record={offre} recordImage={offre.image[0]} />
+    <PbImage record={offre} recordImage={offre.image[0]}  />
 
     <h2>{offre.nom_maison}</h2>
     <ul>
@@ -20,10 +20,6 @@ import PbImage from './PbImage.astro';
         padding: 1rem;
         border-radius: 8px;
         max-width: 260px;
-    }
-    img {
-        width: 100%;
-        border-radius: 6px;
     }
     .favori {
         color: rgb(174, 0, 255);
