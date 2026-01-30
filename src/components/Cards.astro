@@ -2,7 +2,7 @@
 const { offre } = Astro.props;
 ---
 
-<div class="card">
+<div class="card bg-violet-400 text-white py-12 px-8 text-center mt-auto">
     <img src={offre.imgUrl} alt={offre.nomMaison} />
 
     <h2>{offre.nomMaison}</h2>
@@ -15,7 +15,7 @@ const { offre } = Astro.props;
         <li>Prix : {offre.prix} €</li>
     </ul>
 
-    {offre.favori && <span class="favori">★ Favori</span>}
+    {offre.favori && <span class="favori bg-blend-color-burn text-yellow-400">★ Favori</span>}
 </div>
 
 <style>
