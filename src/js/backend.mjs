@@ -38,3 +38,17 @@ export async function bySurface(surface) {
     .getFullList({ filter: `superficie > ${surface}` });
   return records;
 }
+
+export async function byPrice(prix) {
+  const records = await db
+    .collection("Maison")
+    .getFullList({ filter: `prix < ${prix}` });
+  return records;
+}
+
+export async function byPriceMinMax(prixmin, prixmax) {
+  const records = await db
+    .collection("Maison")
+    .getFullList({ filter: `prix > ${prixmin} && prix < ${prixmax}` });
+  return records;
+}

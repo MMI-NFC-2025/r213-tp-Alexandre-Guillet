@@ -3,7 +3,7 @@ const { offre } = Astro.props;
 import PbImage from './PbImage.astro';
 ---
 
-<div class="card bg-violet-400 text-white py-12 px-8 text-center mt-auto">
+<div class="card display-flex bg-violet-400 text-white py-12 px-8 text-center mt-auto">
     <PbImage record={offre} recordImage={offre.image[0]}  />
 
     <h2>{offre.nom_maison}</h2>

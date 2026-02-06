@@ -1,0 +1,20 @@
+---
+import { byPriceMinMax } from '../../../js/backend.mjs';
+import Layout from '../../../layouts/Layout.astro';
+
+const { prixmin, prixmax } = Astro.params;
+const offres = await byPriceMinMax(prixmin, prixmax);
+---
+
+<Layout titre={`Maisons de ${prixmin} € à ${prixmax} €`}>
+    {offres.map((offre) => (
+        <div key={offre.id}>
+            <h2>{offre.nom_maison}</h2>
+            <ul>
+                <li>{offre.adresse}</li>
+                <li>{offre.prix} €</li>
+                <li>{offre.superficie} m²</li> 
+            </ul>
+        </div>
+    ))}
+</Layout>
