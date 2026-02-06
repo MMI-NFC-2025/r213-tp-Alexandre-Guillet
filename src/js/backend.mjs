@@ -24,10 +24,17 @@ export async function getImageUrl(record, recordImage) {
 //backend.js
 export async function getOffre(id) {
   try {
-    const data = await db.collection("maison").getOne(id);
+    const data = await db.collection("Maison").getOne(id);
     return data;
   } catch (error) {
     console.log("Une erreur est survenue en lisant la maison", error);
     return null;
   }
+}
+
+export async function bySurface(surface) {
+  const records = await db
+    .collection("Maison")
+    .getFullList({ filter: `superficie > ${surface}` });
+  return records;
 }

@@ -1,0 +1,20 @@
+---
+import { bySurface } from '../../../js/backend.mjs';
+import Layout from '../../../layouts/Layout.astro';
+
+const { surface } = Astro.params;
+const offres = await bySurface(surface);
+---
+
+<Layout titre={`Maisons de plus de ${surface} m²`}>
+    {offres.map((offre) => (
+        <div key={offre.id}>
+            <h2>{offre.nom_maison}</h2>
+            <ul>
+                <li>{offre.adresse}</li>
+                <li>{offre.prix} €</li>
+                <li>{offre.superficie} m²</li> 
+            </ul>
+        </div>
+    ))}
+</Layout>
