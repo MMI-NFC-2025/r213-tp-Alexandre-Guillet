@@ -2,12 +2,35 @@
 import '../../styles/global.css';
 import Layout from '../../layouts/Layout.astro';
 import Cards from '../../components/Cards.astro';
-    import { getOffres } from '../../js/backend.mjs';
-    const offres = await getOffres();
+    import { getOffres,byPriceMinMax } from '../../js/backend.mjs';
+    let offres = await getOffres();
+    let message = '';
+if (Astro.request.method === "POST") {
+    const data = await Astro.request.formData();
+    const prixmin = parseInt(data.get("prixmin"));
+    const prixmax = parseInt(data.get("prixmax"));
+
+    if (prixmin > 0 && prixmax > 0 && prixmax > prixmin) {
+        offres = await byPriceMinMax(prixmin, prixmax);
+        if (offres.length === 0) {
+            message = `Pas d'offres entre ${prixmin}€ et ${prixmax}€`;
+        } else {
+            message = `Liste des offres entre ${prixmin}€ et ${prixmax}€`;
+        }
+    } else {
+        message = "Veuillez entrer des valeurs valides pour le prix.";
+    }
+} else {
+    offres = await getOffres();
+}
 ---
 <Layout titre="Les offres">
   <h1>Nos offres</h1>
-
+    <form action="/offres" method="POST">
+        <input type="number" name="prixmin" placeholder="Prix minimum" />
+        <input type="number" name="prixmax" placeholder="Prix maximum" />
+        <input type="submit" value="Filtrer par prix" />
+    </form>
   <div>
     {
       offres.map((offre) => (
