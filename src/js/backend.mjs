@@ -68,3 +68,15 @@ export async function addOffre(house) {
     };
   }
 }
+
+export async function addNewMaison(newMaison) {
+  await db.collection("Maison").create(newMaison);
+}
+
+export async function addNewAgent(newAgent) {
+  await db.collection("Agent").create(newAgent);
+}
+
+export async function DeleteMaisonById() {
+  await db.collection("Maison").delete('RECORD-ID');
+}
