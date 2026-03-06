@@ -1,0 +1,18 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { getAllAgents } from "../../../js/backend.mjs";
+
+const agents = await getAllAgents();
+---
+<Layout title="Nos Agents">
+  <h1>Nos Agents</h1>
+  <ul>
+    {agents.map((agent) => (
+      <li key={agent.id}>
+        <a href={`/offres/agent/${agent.id}`}>
+          {agent.nom} {agent.prenom}
+        </a>
+      </li>
+    ))}
+  </ul>
+</Layout>

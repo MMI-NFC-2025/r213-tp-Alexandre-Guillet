@@ -78,5 +78,52 @@ export async function addNewAgent(newAgent) {
 }
 
 export async function DeleteMaisonById() {
-  await db.collection("Maison").delete('RECORD-ID');
+  await db.collection("Maison").delete("2m7uo5csaa9emzg");
+}
+
+export async function DeleteAgentById() {
+  await db.collection("Agent").delete("1bdmvzljiks36ik");
+}
+
+export async function updateMaisonById(id, Data) {
+  await db.collection("Maison").update(id, Data);
+}
+
+export async function updateAgentById(id, Data) {
+  await db.collection("Agent").update(id, Data);
+}
+
+export async function superUserauth() {
+  await db.collection("users").authWithPassword("test@test.fr", "123456");
+}
+
+export async function getOneAgent() {
+  try {
+    let agents = await pb.collection("agent").get({
+      expand: "agent",
+    });
+    return agents;
+  } catch (error) {
+    console.error("Error fetching artistes:", error);
+    return [];
+  }
+}
+
+export async function getOffreByEmail(email) {
+  try {
+    const data = await db.collection("Maison").getOne(email);
+    return data;
+  } catch (error) {
+    console.log("Une erreur est survenue en lisant la maison", error);
+    return null;
+  }
+}
+export async function getAllAgents() {
+  try {
+    let data = await db.collection("Agent").getFullList();
+    return data;
+  } catch (error) {
+    console.log("Une erreur est survenue en lisant la liste des agents", error);
+    return [];
+  }
 }

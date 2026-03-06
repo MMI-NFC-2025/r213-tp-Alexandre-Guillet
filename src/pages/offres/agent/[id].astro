@@ -1,0 +1,15 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { getAgent } from "../../../js/backend.mjs";
+import { getOffreByEmail } from "../../../js/backend.mjs";
+const id = Astro.params;
+const agent = await getAgent();
+console.log(agent);
+const email = await getOffreByEmail(agent.email)
+
+---
+<Layout title = > {agent.nom} {agent.prenom}</h2>
+    <ul>
+        <li>{agent.email}</li> 
+    </ul>
+</Layout>
