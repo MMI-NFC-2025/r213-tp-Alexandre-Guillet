@@ -97,14 +97,12 @@ export async function superUserauth() {
   await db.collection("users").authWithPassword("test@test.fr", "123456");
 }
 
-export async function getOneAgent() {
+export async function getOneAgent(id) {
   try {
-    let agents = await pb.collection("agent").get({
-      expand: "agent",
-    });
+    let agents = await db.collection("Agent").getOne(id);
     return agents;
   } catch (error) {
-    console.error("Error fetching artistes:", error);
+    console.log("Une erreur est survenue en lisant la liste des agents", error);
     return [];
   }
 }
@@ -114,8 +112,8 @@ export async function getOffreByEmail(email) {
     const data = await db.collection("Maison").getOne(email);
     return data;
   } catch (error) {
-    console.log("Une erreur est survenue en lisant la maison", error);
-    return null;
+    console.log("Une erreur est survenue en lisant la liste des agents", error);
+    return [];
   }
 }
 export async function getAllAgents() {
@@ -124,6 +122,21 @@ export async function getAllAgents() {
     return data;
   } catch (error) {
     console.log("Une erreur est survenue en lisant la liste des agents", error);
+    return [];
+  }
+}
+
+export async function getMaisonByAgent(id) {
+  try {
+    let data = await db.collection("Maison").getFullList({
+      filter: `agent = "${id}"`,
+    });
+    return data;
+  } catch (error) {
+    console.log(
+      "Une erreur est survenue en lisant la liste des maisons",
+      error,
+    );
     return [];
   }
 }

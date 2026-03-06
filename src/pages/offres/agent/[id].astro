@@ -1,12 +1,11 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import { getAgent } from "../../../js/backend.mjs";
-import { getOffreByEmail } from "../../../js/backend.mjs";
+import { getOneAgent } from "../../../js/backend.mjs";
+import { getMaisonByAgent } from "../../../js/backend.mjs";
 const id = Astro.params;
-const agent = await getAgent();
+const agent = await getOneAgent(id);
+const maisons = await getMaisonByAgent(id);
 console.log(agent);
-const email = await getOffreByEmail(agent.email)
-
 ---
 <Layout title = > {agent.nom} {agent.prenom}</h2>
     <ul>
